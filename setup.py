@@ -5,7 +5,7 @@ setup(
 	name="diutil", 
 	version="0.1.0",
 	description="just toolbox",
-	packages=find_packages("diutil"),
+	packages=find_packages(),
 	install_requires=[
 		# "dependency1",
 		# "dependency2",
