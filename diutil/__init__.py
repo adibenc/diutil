@@ -5,10 +5,10 @@ __all__ = [
 
 __version__ = "diutil"
 
-from butil import (
+from .butil import (
 	create_square_df
 )
-from gitutil import (
+from .gitutil import (
 	Gitter
 )
 
