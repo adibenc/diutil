@@ -12,6 +12,7 @@ setup(
 		"pandas",
 		"GitPython",
 		"zope.datetime",
+		"DateTime",
 	],
 )
 # """
