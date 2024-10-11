@@ -124,9 +124,14 @@ class Artifact:
 	def to_file(self):
 		dt = self.created_at
 		if self.to_json:
-			with open(f"{dt}-pipeline.json", "w") as f:
-				# Writing the string representation of the artifact's dictionary to the file
-				f.write(json.dumps(self.__dict__))
+			try:
+				with open(f"{dt}-pipeline.json", "w") as f:
+					# Writing the string representation of the artifact's dictionary to the file
+					f.write(json.dumps(self.__dict__))
+			except Exception as e:
+				with open(f"{dt}-pipeline.md", "w") as f:
+					# Writing the string representation of the artifact's dictionary to the file
+					f.write(str(self.__dict__))
 		else:
 			with open(f"{dt}-pipeline.md", "w") as f:
 				# Writing the string representation of the artifact's dictionary to the file
