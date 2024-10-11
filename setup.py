@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 # """
 setup(
 	name="diutil", 
-	version="0.1.0",
+	version="0.1.1",
 	description="just toolbox",
 	packages=find_packages(),
 	install_requires=[

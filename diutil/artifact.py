@@ -3,6 +3,7 @@
 from DateTime import DateTime
 import uuid
 import os
+import json
 
 # Simple Artifact class
 class Artifact:
@@ -29,6 +30,7 @@ class Artifact:
 
 	{'created_at': '2024-10-10 17:45:38', 'id': 1, 'feature_brief': ['Brief description'], 'feature_sample': ['Sample feature'], 'data_dim': (3, 3), 'result_val': 0.95, 'result_metric': 'accuracy', 'result_err_val': 0.05, 'result_conf_matrix': [[50, 2], [1, 47]], 'result_infer_sample': [1, 0], 'err_metric': 'mean_squared_error'}
 	"""
+	to_json = True
 
 	def __init__(self, id=None) -> None:
 		dt = DateTime()
@@ -121,11 +123,29 @@ class Artifact:
 
 	def to_file(self):
 		dt = self.created_at
-		with open(f"{dt}-pipeline.md", "w") as f:
-			# Writing the string representation of the artifact's dictionary to the file
-			f.write(str(self.__dict__))
+		if self.to_json:
+			with open(f"{dt}-pipeline.json", "w") as f:
+				# Writing the string representation of the artifact's dictionary to the file
+				f.write(json.dump(self.__dict__))
+		else:
+			with open(f"{dt}-pipeline.md", "w") as f:
+				# Writing the string representation of the artifact's dictionary to the file
+				f.write(str(self.__dict__))
+			
 		return self
 
+	def to_dict(self):
+		return {
+			"feature_brief": self.feature_brief,
+			"feature_sample": self.feature_sample,
+			"data_dim": self.data_dim,
+			"result_val": self.result_val,
+			"result_metric": self.result_metric,
+			"result_err_val": self.result_err_val,
+			"result_conf_matrix": self.result_conf_matrix,
+			"result_infer_sample": self.result_infer_sample,
+			"err_metric": self.err_metric,
+		}
 
 # Usage example
 
